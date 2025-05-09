@@ -1,4 +1,6 @@
 import random
+
+# List of fun dares to give when the player loses
 fun_dares = [
     "Talk in an accent for the next 3 rounds",
     "Do your best celebrity impression until someone guesses who it is",
@@ -26,7 +28,9 @@ fun_dares = [
     "Speak in rhymes only for the next two turns",
     "Let the group write a message and send it to someone in your contacts"
 ]
-rock=("""
+
+# ASCII art for rock, paper, and scissors
+rock = ("""
     _______
 ---'   ____)
       (_____)
@@ -35,7 +39,8 @@ rock=("""
 ---.__(___)
           ROCK
 """)
-paper=("""
+
+paper = ("""
      _______
 ---'    ____)____
            ______)
@@ -44,7 +49,8 @@ paper=("""
 ---.__________)
            PAPER
 """)
-scissor=("""
+
+scissor = ("""
     _______
 ---'   ____)____
           ______)
@@ -53,36 +59,46 @@ scissor=("""
 ---.__(___)
           SCISSOR
 """)
-playable = [rock,paper,scissor]
-pc=0
-cc=0
-playerchoice = input("Enter rock, paper, or scissor: ")
-if playerchoice=="rock":
-    pc=1
+
+# List of playable options to randomly select from for computer
+playable = [rock, paper, scissor]
+
+# Variables to store player choice (pc) and computer choice (cc)
+pc = 0
+cc = 0
+
+# Take player's input
+playerchoice = input("Enter rock, paper, or scissor: ").lower()
+
+# Map player input to respective value and display ASCII art
+if playerchoice == "rock":
+    pc = 1
     print(rock)
-elif playerchoice=="paper":
-    pc=2
+elif playerchoice == "paper":
+    pc = 2
     print(paper)
-elif playerchoice=="scissor":
-    pc=3
+elif playerchoice == "scissor":
+    pc = 3
     print(scissor)
 else:
     print("Please give a proper choice.")
-    exit()
-computerchoice=random.choice(playable)
-cc=playable.index(computerchoice)+1
-print("Computer chose",computerchoice)
-if pc==cc:
-    print("Its a draw")
-elif pc==1 and cc==3:
-    print("You win!")
-elif pc==3 and cc==1:
-    print("You lose!")
-    print("A dare for you: ",random.choice(fun_dares))
-elif pc>cc:
+    exit()  # Exit if input is invalid
+
+# Computer randomly selects a move
+computerchoice = random.choice(playable)
+cc = playable.index(computerchoice) + 1  # Translate list index to 1-based for logic
+print("Computer chose", computerchoice)
+
+# Determine game outcome
+if pc == cc:
+    print("It's a draw")
+elif pc == 1 and cc == 3:
+    print("You win!")  # Rock beats Scissors
+elif pc == 3 and cc == 1:
+    print("You lose!")  # Scissors lose to Rock
+    print("A dare for you: ", random.choice(fun_dares))
+elif pc > cc:
     print("You win!")
 else:
     print("You lose")
-    print("A dare for you: ",random.choice(fun_dares))
-
-    
+    print("A dare for you: ", random.choice(fun_dares))
